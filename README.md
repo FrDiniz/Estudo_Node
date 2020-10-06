@@ -40,9 +40,10 @@ Upload de Imagens
 CNH ou CPF (obrigatório)
 Comprovante de renda
 Imagens do imóvel
-Aprovação
 
+Aprovação
 Status (Aprovação ou reprovação do contrato)
+
 5. Diferencial
 Desenvolver a aplicação sobre a arquitetura Serverless.
 Documentação de todo código e dos endpoints.
