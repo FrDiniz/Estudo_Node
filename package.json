@@ -1,0 +1,30 @@
+{
+  "name": "Pontte",
+  "version": "1.0.0",
+  "description": "Aplicação para gerenciamento de contratos de empréstimo.\r Teste adimicional Pontte.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "supervisor": "supervisor server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrDiniz/Pontte.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrDiniz/Pontte/issues"
+  },
+  "homepage": "https://github.com/FrDiniz/Pontte#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7"
+  },
+  "devDependencies": {
+  
+  }
+}
