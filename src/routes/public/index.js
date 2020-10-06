@@ -1,6 +1,5 @@
-const contract = require("./contract");
-const user = require("./user");
-const auth = require("./auth");
+const contract = require("../contract");
+const user = require("./user-router");
 
 const validarToken = (token) => {
   return true;
