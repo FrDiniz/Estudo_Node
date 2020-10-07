@@ -4,7 +4,7 @@
 
 ### Endpoint para criar um contrato
 
-http://localhost:8080/contract
+[POST] http://localhost:8080/contract
 
 ```json
 {
@@ -16,5 +16,21 @@ http://localhost:8080/contract
   "dt_nasc": "1997-09-24",
   "estado_civil": "solteiro",
   "endereco": "Rua das Orquideas, 56 - Jardim Mercedes - Jandira"
+}
+```
+
+### Endpoint para listar os contratos
+
+[GET] http://localhost:8080/contract
+
+### Endpoint adicionar imagem a um contrato
+
+[POST] http://localhost:8080/contract/image
+
+```json
+{
+  "idContract": "5f7e41c1e133a249dc65b312",
+  "docType": 2,
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhE... <base 64>"
 }
 ```
