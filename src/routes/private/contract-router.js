@@ -1,90 +1,103 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const ContractService = require('./../../services/contract-service')
+const ContractService = require("./../../services/contract-service");
 
-router.get('/contract', async (req, res) => {
+router.get("/", async (req, res) => {
+  try {
+    const lstContract = await ContractService.getAll();
+
+    res.json(lstContract);
+  } catch (error) {
+    res.status(500).send({
+      errors: error,
+      message: "Erro ao consultar os contratos",
+    });
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    console.log(req.body);
+    let result = await ContractService.insert(req.body);
+    console.log(result);
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      errors: error,
+      message: "Erro ao inserir o contrato",
+    });
+  }
+});
+
+router.post("/image", async (req, res) => {
+  try {
+    let idContract = req.body.idContract;
+    let data = {
+        docType: req.body.docType,
+        image: req.body.image,
+    };
+
+    console.log({ data });
+
+    let result = await ContractService.addImage(idContract, data);
+    console.log({ result });
+    res.json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      errors: error,
+      message: "Erro ao inserir imagem contrato",
+    });
+  }
+});
+
+router.post("/update", async (req, res) => {
     try {
-        const lstContract = await ContractService.getAll()
-        
-        res.json(
-            lstContract.map((c) => {
-                return {
-                    nome:c.nome,
-                    imgs: c.imgs
-                }
-            })
-        )
-    } catch (error) {
-        res.status(500).send({
-            errors: error,
-            message: 'Erro ao consultar os contratos'
-        })
-    }
-})
+      let idContract = req.body.idContract;
 
-router.get('/contract/detalhado', async (req, res) => {
+      let result = await ContractService.update(idContract);
+      console.log({ result });
+      res.json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        errors: error,
+        message: "Erro ao atualizar dados do contrato",
+      });
+    }
+  });
+
+router.post("/approve", async (req, res) => {
     try {
-        const lstContract = await ContractService.getAll()
-        
-        res.json(
-            lstContract
-        )
-    } catch (error) {
-        res.status(500).send({
-            errors: error,
-            message: 'Erro ao consultar os contratos'
-        })
-    }
-})
+      let idContract = req.body.idContract;
 
-router.delete('/contract/all', async (req, res) => {
+      let result = await ContractService.approve(idContract);
+      console.log({ result });
+      res.json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        errors: error,
+        message: "Erro ao aprovar contrato",
+      });
+    }
+  });
+
+  router.post("/disapprove", async (req, res) => {
     try {
-        await ContractService.deleteAll()
-        res.send(200)
+      let idContract = req.body.idContract;
+
+      let result = await ContractService.disapprove(idContract);
+      console.log({ result });
+      res.json(result);
     } catch (error) {
-        res.status(500).send({
-            errors: error,
-            message: 'Erro ao consultar os contratos'
-        })
+      console.log(error);
+      res.status(500).send({
+        errors: error,
+        message: "Erro ao reprovar contrato",
+      });
     }
-})
+  });
 
-router.post('/contract', async (req, res) => {
-    try {
-        console.log(req.body)
-        let result = await ContractService.insert(req.body)
-        console.log(result)
-        res.json(result)
-    } catch (error) {
-        console.log(error)
-        res.status(500).send({
-            errors: error,
-            message: 'Erro ao inserir o contrato'
-        })
-    }
-})
-
-router.post('/contract/imagem', async (req, res) => {
-    try {
-
-        let idContract = req.body.idContract
-        let data = {
-            label: req.body.label,
-            imagem: req.body.imagem
-        }
-
-        console.log({ data })
-
-        let result = await ContractService.addImage(idContract, data)
-        console.log({ result })
-        res.json(result)
-    } catch (error) {
-        console.log(error)
-        res.status(500).send({
-            errors: error,
-            message: 'Erro ao inserir imagem contrato'
-        })
-    }
-})
-
-module.exports = router
+module.exports = router;
