@@ -34,3 +34,23 @@
   "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhE... <base 64>"
 }
 ```
+
+### Endpoint aprovar um contrato
+
+[POST] http://localhost:8080/contract/approve
+
+```json
+{
+  "idContract": "5f7e40ede133a249dc65b30d"
+}
+```
+
+### Endpoint reprovar um contrato
+
+[POST] http://localhost:8080/contract/disapprove
+
+```json
+{
+  "idContract": "5f7e40ede133a249dc65b30d"
+}
+```
